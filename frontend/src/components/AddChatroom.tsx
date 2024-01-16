@@ -14,10 +14,9 @@ import {
   Chatroom,
   CreateChatroomMutation,
   SearchUsersQuery,
-  User,
 } from "../gql/graphql"
 import { useMutation, useQuery } from "@apollo/client"
-import { useForm } from "@mantine/form"
+import {useForm} from "@mantine/form"
 import { IconPlus } from "@tabler/icons-react"
 import { SEARCH_USERS } from "../graphql/queries/SearchUsers"
 import { ADD_USERS_TO_CHATROOM } from "../graphql/mutatoins/AddUsersToChatroom"

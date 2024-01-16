@@ -1,35 +1,83 @@
 import { useState } from "react"
 import { useGeneralStore } from "../stores/generalStore"
 import { useUserStore } from "../stores/userStore"
-import { Center, Tooltip, UnstyledButton, Stack, rem } from '@mantine/core';
+import {
+  Navbar,
+  Center,
+  Tooltip,
+  UnstyledButton,
+  createStyles,
+  Stack,
+  rem,
+} from "@mantine/core"
 
 import {
-  IconHome2,
   IconUser,
   IconLogout,
   IconBrandMessenger,
   IconBrandWechat,
   IconLogin,
 } from "@tabler/icons-react"
-import classes from './NavbarMinimal.module.css';
 import { useMutation } from "@apollo/client"
 import { LOGOUT_USER } from "../graphql/mutatoins/Logout"
 
+const useStyles = createStyles((theme) => {
+  return {
+    link: {
+      width: rem(50),
+      height: rem(50),
+      borderRadius: theme.radius.md,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      color:
+        theme.colorScheme === "dark"
+          ? theme.colors.dark[0]
+          : theme.colors.gray[7],
+
+      "&:hover": {
+        backgroundColor:
+          theme.colorScheme === "dark"
+            ? theme.colors.dark[5]
+            : theme.colors.gray[0],
+      },
+    },
+    active: {
+      "&, &:hover": {
+        backgroundColor: theme.fn.variant({
+          variant: "light",
+          color: theme.primaryColor,
+        }).background,
+        color: theme.fn.variant({ variant: "light", color: theme.primaryColor })
+          .color,
+      },
+    },
+  }
+})
 
 interface NavbarLinkProps {
-  icon: typeof IconHome2;
-  label: string;
-  active?: boolean;
-  onClick?(): void;
+  icon: React.FC<any>
+  label: string
+  active?: boolean
+  onClick?(): void
 }
 
 function NavbarLink({ icon: Icon, label, active, onClick }: NavbarLinkProps) {
+  const { classes, cx } = useStyles()
   return (
-    <Tooltip label={label} position="right" transitionProps={{ duration: 0 }}>
-    <UnstyledButton onClick={onClick} className={classes.link} data-active={active || undefined}>
-      <Icon style={{ width: rem(20), height: rem(20) }} stroke={1.5} />
-    </UnstyledButton>
-  </Tooltip>
+    <Tooltip
+      label={label}
+      position="top-start"
+      offset={-30}
+      transitionProps={{ duration: 0 }}
+    >
+      <UnstyledButton
+        onClick={onClick}
+        className={cx(classes.link, { [classes.active]: active })}
+      >
+        <Icon size="1.2rem" stroke={1.5} />
+      </UnstyledButton>
+    </Tooltip>
   )
 }
 const mockdata = [{ icon: IconBrandWechat, label: "Chatrooms" }]
@@ -70,17 +118,17 @@ function Sidebar() {
   }
 
   return (
-    <nav className={classes.navbar}>
+    <Navbar fixed zIndex={100} w={rem(100)} p="md">
       <Center>
         <IconBrandMessenger type="mark" size={30} />
       </Center>
-      <div className={classes.navbarMain}>
-        <Stack justify="center" gap={0}>
+      <Navbar.Section grow mt={50}>
+        <Stack justify="center" spacing={0}>
           {userId && links}
         </Stack>
-      </div>
-      
-        <Stack justify="center" gap={0}>
+      </Navbar.Section>
+      <Navbar.Section>
+        <Stack justify="center" spacing={0}>
           {userId && (
             <NavbarLink
               icon={IconUser}
@@ -103,8 +151,8 @@ function Sidebar() {
             />
           )}
         </Stack>
-     
-    </nav>
+      </Navbar.Section>
+    </Navbar>
   )
 }
 
