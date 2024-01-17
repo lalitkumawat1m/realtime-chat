@@ -4,8 +4,6 @@ import {
   TextInput,
   Image,
   Button,
-  Paper,
-  useMantineTheme,
   Flex,
   Avatar,
   Tooltip,
