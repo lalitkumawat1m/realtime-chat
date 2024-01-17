@@ -18,24 +18,6 @@ Clone the project
   git clone https://link-to-project
 ```
 
-Run Frontend
-
-```bash
-  cd frontend
-```
-
-Install dependencies
-
-```bash
-  npm install
-```
-
-Start the server
-
-```bash
-  npm run dev
-```
-
 Run Docker Container of Redis and Postgresql 
 ```bash
   docker compose up
@@ -59,3 +41,20 @@ Start the server
   npm run start:dev
 ```
 
+Run Frontend
+
+```bash
+  cd frontend
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm run dev
+```
