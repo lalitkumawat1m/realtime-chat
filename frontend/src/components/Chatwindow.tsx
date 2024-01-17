@@ -147,6 +147,7 @@ function Chatwindow() {
       },
     })
 
+  //@ts-ignore
   const [liveUsers, setLiveUsers] = useState<User[]>([])
 
   useEffect(() => {
