@@ -23,7 +23,7 @@ import { ADD_USERS_TO_CHATROOM } from "../graphql/mutatoins/AddUsersToChatroom"
 
 function AddChatroom() {
   const [active, setActive] = useState(1)
-  const [highestStepVisited, setHighestStepVisited] = useState(0)
+  // const [highestStepVisited, setHighestStepVisited] = useState(0)
 
   const isCreateRoomModalOpen = useGeneralStore(
     (state) => state.isCreateRoomModalOpen
@@ -40,7 +40,7 @@ function AddChatroom() {
     }
 
     setActive(nextStep)
-    setHighestStepVisited((hSC) => Math.max(hSC, nextStep))
+    // setHighestStepVisited((hSC) => Math.max(hSC, nextStep))
   }
 
   const [createChatroom, { loading }] =
