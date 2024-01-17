@@ -101,7 +101,6 @@ function ProfileSettings() {
             style={{ display: "none" }}
             pos={"absolute"}
             accept="image/*"
-            placeholder="Upload new image"
             onChange={(file) => setImageFile(file)}
           />
         </Group>

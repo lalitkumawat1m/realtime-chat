@@ -23,7 +23,7 @@ import { ADD_USERS_TO_CHATROOM } from "../graphql/mutatoins/AddUsersToChatroom"
 
 function AddChatroom() {
   const [active, setActive] = useState(1)
-  const [highestStepVisited, setHighestStepVisited] = useState(active)
+  const [highestStepVisited, setHighestStepVisited] = useState(0)
 
   const isCreateRoomModalOpen = useGeneralStore(
     (state) => state.isCreateRoomModalOpen
@@ -80,7 +80,7 @@ function AddChatroom() {
   const { data, refetch } = useQuery<SearchUsersQuery>(SEARCH_USERS, {
     variables: { fullname: searchTerm },
   })
-  const [addUsersToChatroom, { loading: loadingAddUsers }] =
+  const [addUsersToChatroom] =
     useMutation<AddUsersToChatroomMutation>(ADD_USERS_TO_CHATROOM, {
       refetchQueries: ["GetChatroomsForUser"],
     })

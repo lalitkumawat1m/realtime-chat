@@ -14,7 +14,7 @@ import { IconPlus, IconX } from "@tabler/icons-react"
 import { useGeneralStore } from "../stores/generalStore"
 import { useUserStore } from "../stores/userStore"
 import { Link, useNavigate, useParams } from "react-router-dom"
-import { Chatroom, GetChatroomsForUserQuery } from "../gql/graphql"
+import {  GetChatroomsForUserQuery } from "../gql/graphql"
 import { GET_CHATROOMS_FOR_USER } from "../graphql/queries/GetChatRoomsForUser"
 import { DELETE_CHATROOM } from "../graphql/mutatoins/DeleteChatroom"
 import { useMutation, useQuery } from "@apollo/client"
@@ -25,7 +25,7 @@ function RoomList() {
   )
   const userId = useUserStore((state) => state.id)
 
-  const { data, loading, error } = useQuery<GetChatroomsForUserQuery>(
+  const { data, loading} = useQuery<GetChatroomsForUserQuery>(
     GET_CHATROOMS_FOR_USER,
     {
       variables: {
