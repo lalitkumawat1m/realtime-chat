@@ -20,6 +20,7 @@
     "@tabler/icons-react": "^2.32.0",
     "apollo-upload-client": "^17.0.0",
     "graphql": "^16.8.1",
+    "graphql-ws": "^5.14.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.3",

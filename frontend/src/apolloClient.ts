@@ -7,12 +7,16 @@ import {
   ApolloLink,
   split,
 } from "@apollo/client"
-import { WebSocketLink } from "@apollo/client/link/ws"
+// import { WebSocketLink } from "@apollo/client/link/ws"
 import { createUploadLink } from "apollo-upload-client"
 import { getMainDefinition } from "@apollo/client/utilities"
 import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev"
 import { useUserStore } from "./stores/userStore"
 import { onError } from "@apollo/client/link/error"
+import { GraphQLWsLink } from '@apollo/client/link/subscriptions';
+import { createClient } from 'graphql-ws';
+
+
 
 loadErrorMessages()
 loadDevMessages()
@@ -38,16 +42,24 @@ async function refreshToken(client: ApolloClient<NormalizedCacheObject>) {
 let retryCount = 0
 const maxRetry = 3
 
-const wsLink = new WebSocketLink({
-  uri: `wss://real-time-chat-vewr.onrender.com/graphql`,
-  options: {
-    reconnect: true,
-    timeout:3000,
-    connectionParams: {
-      Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-    },
+// const wsLink = new WebSocketLink({
+//   uri: `wss://real-time-chat-vewr.onrender.com/graphql`,
+//   options: {
+//     reconnect: true,
+//     connectionParams: {
+//       Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+//     },
+//   },
+// })
+
+const wsLink = new GraphQLWsLink(createClient({
+  url: 'wss://real-time-chat-vewr.onrender.com/graphql',
+  connectionParams: {
+    Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
   },
-})
+}));
+
+
 const errorLink = onError(({ graphQLErrors, operation, forward }) => {
   if(graphQLErrors){
   for (const err of graphQLErrors) {
