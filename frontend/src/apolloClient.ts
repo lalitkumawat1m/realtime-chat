@@ -54,6 +54,7 @@ const maxRetry = 3
 
 const wsLink = new GraphQLWsLink(createClient({
   url: 'wss://real-time-chat-vewr.onrender.com/graphql',
+  shouldRetry: () => true,
   connectionParams: {
     Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
   },
