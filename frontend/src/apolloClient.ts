@@ -42,7 +42,7 @@ loadDevMessages()
 // }
 
 const httpLink = new HttpLink({
-  uri: 'http://localhost:3000/graphql'
+  uri: 'https://real-time-chat-vewr.onrender.com/graphql'
 });
 
 const wsLink = new GraphQLWsLink(createClient({
