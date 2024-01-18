@@ -18,6 +18,8 @@ const pubSub = new RedisPubSub({
   connection: {
     host: process.env.REDIS_HOST || 'localhost',
     port: parseInt(process.env.REDIS_PORT || '6379', 10),
+    username: process.env.REDIS_USERNAME, 
+    password: process.env.REDIS_PASS,
     retryStrategy: (times) => {
       // retry strategy
       return Math.min(times * 50, 2000);
