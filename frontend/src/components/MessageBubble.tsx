@@ -57,7 +57,7 @@ const MessageBubble: React.FC<MessageProps> = ({ message, currentUserId }) => {
               width={"250"}
               height={"250"}
               fit="cover"
-              src={"http://localhost:3000/" + message.imageUrl}
+              src={"https://real-time-chat-vewr.onrender.com/" + message.imageUrl}
               alt="Uploaded content"
             />
           )}
