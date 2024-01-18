@@ -42,6 +42,7 @@ const wsLink = new WebSocketLink({
   uri: `wss://real-time-chat-vewr.onrender.com/graphql`,
   options: {
     reconnect: true,
+    timeout:3000,
     connectionParams: {
       Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
     },
