@@ -32,7 +32,7 @@ Run backend
 Install dependencies
 
 ```bash
-  npm install
+  npm install && npx @nestjs/cli build
 ```
 
 Start the server
