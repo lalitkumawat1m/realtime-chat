@@ -39,7 +39,7 @@ let retryCount = 0
 const maxRetry = 3
 
 const wsLink = new WebSocketLink({
-  uri: `ws://real-time-chat-vewr.onrender.com/graphql`,
+  uri: `wss://real-time-chat-vewr.onrender.com/graphql`,
   options: {
     reconnect: true,
     connectionParams: {
