@@ -62,7 +62,7 @@ const wsLink = new GraphQLWsLink(createClient({
 
 
 const errorLink = onError(({ graphQLErrors, operation, forward }) => {
-  if(graphQLErrors){
+  if(graphQLErrors?.length){
   for (const err of graphQLErrors) {
     if (err.extensions.code === "UNAUTHENTICATED" && retryCount < maxRetry) {
       retryCount++
@@ -120,6 +120,7 @@ export const client = new ApolloClient({
   credentials: "include",
   headers: {
     "Content-Type": "application/json",
+  
   },
   link: link,
 })
