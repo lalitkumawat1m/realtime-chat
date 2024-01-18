@@ -47,6 +47,7 @@ const pubSub = new RedisPubSub({
         tokenService:TokenService
         ) => {
         return{
+          introspection:true,
           installSubscriptionHandlers: true,
           playground: true,
           autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
